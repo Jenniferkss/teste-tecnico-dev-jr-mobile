@@ -1,179 +1,75 @@
-# Perfil Dev Jr — Teste Técnico Dev Jr Mobile
 
----
+# Documentação do Projeto
 
-**ATENÇÃO:**
+**Descrição do projeto**
 
-Antes de iniciar o teste, faça um **fork** deste repositório para a sua conta do GitHub. Realize todo o desenvolvimento no seu repositório forkado. Ao finalizar, envie o **link do seu repositório** (com as alterações realizadas) como entrega.
+Aplicativo mobile simples criado em React Native com Expo para apresentar o perfil de um(a) candidato(a) a Desenvolvedor(a) Mobile Júnior. O app contém telas para visualizar informações pessoais, habilidades e projetos, com navegação por abas inferiores e um menu drawer.
 
----
+**Tecnologias utilizadas**
 
-## Sobre o desafio
+- React Native (Expo)
+- React Navigation (Stack, Tabs, Drawer)
+- JavaScript (ES6+)
+- npm
 
-A empresa fictícia **DevStart Mobile** está contratando um(a) **Desenvolvedor(a) Mobile Júnior**. O objetivo é criar um aplicativo mobile simples, organizado e funcional usando **React Native com Expo**.
+**Funcionalidades implementadas**
 
-Além da interface, serão avaliados:
-- Criação do projeto com Expo
-- Uso de componentes básicos do React Native
-- Navegação por abas inferiores (TabBar)
-- Organização de telas em arquivos separados
-- Estilização com `StyleSheet`
-- Uso de imagens, listas, campos de entrada e botões
-- Versionamento no GitHub
-- README completo e explicativo
+- Perfil: imagem, nome, cargo, descrição, contato, habilidades e listagem de projetos.
+- Habilidades: tela com lista de habilidades (FlatList).
+- Projetos: página com lista de projetos.
+- Home: cards que mostram usuários/produtos; ao tocar no card principal, navega para o `Perfil`.
+- Navegação: abas inferiores (TabBar), Stack para detalhes e Drawer com links para categorias.
 
----
+**Explicação detalhada**
 
-## Requisitos do aplicativo
+- Telas principais:
+   - **Home**: [src/screens/HomeScreen.js](src/screens/HomeScreen.js#L1) — lista de cards gerada a partir de `src/data/products.js`.
+   - **Perfil**: [src/screens/ProfileScreen.js](src/screens/ProfileScreen.js#L1) — exibe `imagem`, `nome`, `cargo`, `sobre`, `contato`, `habilidades` e `projetos` (usa `src/data/products.js`, `src/data/skills.js`, `src/data/projects.js`).
+   - **Habilidades**: [src/screens/FavoritesScreen.js](src/screens/FavoritesScreen.js#L1) — lista de habilidades com `FlatList`.
+   - **Projetos**: [src/screens/CartScreen.js](src/screens/CartScreen.js#L1) — lista de projetos.
+   - **Detalhes**: [src/screens/ProductDetailScreen.js](src/screens/ProductDetailScreen.js#L1) — tela de detalhe para itens.
 
-- Navegação inferior por abas (**TabBar/Bottom Tabs**) com pelo menos 3 telas:
-  - **Perfil:** Nome, imagem, cargo e seção "Sobre mim"
-  - **Habilidades:** Lista com pelo menos 5 habilidades
-  - **Projetos/Contato:** Pelo menos 2 projetos, área de contato (e-mail, GitHub, LinkedIn/portfólio, campo de mensagem e botão "Enviar contato")
-- Utilizar: `View`, `Text`, `Image`, `ScrollView` ou `FlatList`, `TextInput`, `Button`, `StyleSheet`
-- Organização em pastas (ex: `screens/`, `assets/`)
-- Código indentado e layout organizado
-- Projeto funcionando no Expo Go, navegador ou emulador
-- Não usar bibliotecas visuais prontas (ex: NativeBase, Paper, Tamagui, UI Kitten)
+- Navegação:
+   - Drawer: [src/navigation/DrawerNavigator.js](src/navigation/DrawerNavigator.js#L1) — menu lateral com categorias que redirecionam para `Home`, `Habilidades` e `Projetos`.
+   - Tabs: [src/navigation/TabNavigator.js](src/navigation/TabNavigator.js#L1) — abas inferiores (`Início`, `Habilidades`, `Projetos`, `Perfil`).
+   - Stack: [src/navigation/StackNavigator.js](src/navigation/StackNavigator.js#L1) — pilha usada pela aba `Início` para navegar a `ProductDetail`.
 
----
+- Organização do código:
+   - `src/screens/` — telas da aplicação.
+   - `src/navigation/` — arquivos de navegação (drawer, tabs, stack).
+   - `src/data/` — dados estáticos usados para popular as listas (`products.js`, `skills.js`, `projects.js`, `categories.js`).
+   - `assets/` — imagens (ex.: `imagem-perfil.png`).
 
-## Estrutura sugerida
+- Decisões e observações técnicas:
+   - Usei componentes nativos do React Native (`View`, `Text`, `Image`, `FlatList`, `ScrollView`, `TouchableOpacity`) para atender ao requisito de não usar bibliotecas visuais prontas.
+   - Dados são locais (arquivos em `src/data/`) para simplificar o teste e a entrega; podem ser substituídos por uma API posteriormente.
+   - A navegação foi separada por responsabilidade (Tabs para navegação principal, Stack para detalhes e Drawer para categorias) para facilitar manutenção.
 
-```
-perfil-dev-jr/
-│
-├── App.js
-├── screens/
-│   ├── PerfilScreen.js
-│   ├── HabilidadesScreen.js
-│   └── ProjetosScreen.js
-├── assets/
-│   └── imagem-perfil.png
-└── README.md
-```
+**Diferenciais**
 
----
+- Código organizado por pastas e arquivos; fácil extensibilidade.
+- Uso de `FlatList` e `ScrollView` onde adequado para desempenho e UX.
 
-## Como executar o projeto
+**Como executar o projeto**
 
-1. Clone o repositório:
-   ```bash
-   git clone link-do-repositorio
-   ```
-2. Acesse a pasta:
-   ```bash
-   cd perfil-dev-jr
-   ```
-3. Instale as dependências:
-   ```bash
-   npm install
-   ```
-4. Execute o projeto:
-   ```bash
-   npx expo start
-   ```
+1. Instale dependências:
 
----
-
-## O que deve conter no README
-
-- Descrição do projeto
-- Tecnologias utilizadas
-- Funcionalidades implementadas
-- Explicação detalhada de tudo o que foi feito: telas, funcionalidades, decisões tomadas, organização do código, diferenciais
-- Como executar o projeto
-- Autor
-
-Exemplo de tópicos:
-
-```markdown
-# Perfil Dev Jr
-
-## Descrição
-Aplicativo criado em React Native com Expo para apresentar um perfil profissional de candidato a Desenvolvedor Mobile Júnior.
-
-## Tecnologias utilizadas
-- React Native
-- Expo
-- JavaScript
-- React Navigation
-- Git
-- GitHub
-
-## Funcionalidades
-- Exibe dados do candidato
-- Apresenta uma tela de perfil
-- Lista habilidades
-- Mostra projetos
-- Exibe informações de contato
-- Possui navegação por abas inferiores
-
-## Telas
-- **Perfil:** ...
-- **Habilidades:** ...
-- **Projetos/Contato:** ...
-
-## Organização do código
-- ...
-
-## Diferenciais
-- ...
-
-## Como executar o projeto
-1. ...
-
-## Autor
-Nome do aluno
+```bash
+npm install
 ```
 
----
+2. Inicie o Expo:
 
-## Regras de entrega
-
-1. Faça um **fork** deste repositório para a sua conta do GitHub.
-2. Realize todo o desenvolvimento no seu repositório forkado.
-3. Ao finalizar, envie as seguintes informações:
-
-```
-Nome:
-Turma:
-Link do seu repositório forkado no GitHub:
+```bash
+npx expo start
 ```
 
-O link deve apontar para o seu repositório público com o código desenvolvido.
+3. Abra no Expo Go (celular) ou emulador/navegador conforme instruções do terminal.
+
+**Autor**
+
+- Nome: Seu Nome (substitua pelo seu nome)
 
 ---
 
-## Recomendações
-
-- Use apenas estilos criados por você com `StyleSheet`
-- Organize a aplicação em telas separadas
-- Use nomes claros para arquivos, variáveis e estilos
-- Teste a navegação entre as abas
-- Teste o aplicativo antes de entregar
-- Não copie código sem entender
-- Faça commits durante o desenvolvimento
-- Capriche na aparência da tela
-- Cuide da experiência do usuário
-- Pense como se estivesse entregando um teste para uma vaga de Dev Jr
-
----
-
-## Critérios de avaliação
-
-- Projeto criado corretamente com Expo
-- Navegação com TabBar / Bottom Tabs
-- Pelo menos 3 telas diferentes
-- Organização visual e layout
-- Uso correto dos componentes básicos
-- Uso correto do `StyleSheet`
-- GitHub, commits e README
-- Explicação clara do projeto
-- Postura profissional
-
----
-
-## Observação importante
-
-Esta avaliação simula um teste técnico para uma vaga de **Desenvolvedor Mobile Júnior**. Além do aplicativo funcionar, serão avaliados organização, clareza do código, capricho visual, uso correto do GitHub, capacidade de explicar o projeto e postura durante a entrevista técnica.
+Se quiser, eu atualizo o autor, adiciono screenshots nas seções de telas ou incluo instruções de commit/branching para entrega no GitHub.
